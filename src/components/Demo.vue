@@ -1,17 +1,31 @@
 <template>
   <div>
-    <span v-bind:title="message">
-      鼠标悬停几秒钟查看此处动态绑定的提示信息！
-    </span>
-    <h3>
-      {{ user }}
-    </h3>
-    <p id="p" v-if="seen">you can see me</p>
-    <p v-for="todo in todos" :key="todo">
-      {{ todo.text }}
-    </p>
-    <button v-on:click="my_first_click">reverse message</button>
-    <button v-on:click="loadData">loadData</button>
+    <el-row>
+      <el-col :span="24"><div class="grid-content bg-purple-dark"></div></el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="12"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="6"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
+    <el-row>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+    </el-row>
   </div>
 </template>
 
@@ -33,9 +47,9 @@ export default {
     loadData() {
       console.log('called')
       let _this = this;
-      this.$ajax.get('http://localhost:8081/hello').then(
+      this.$ajax.get('http://localhost:8081/user').then(
           function (res) {
-            _this.user = res.data
+            _this.user = res.data.data
           }
       ).catch(function (res) {
         console.log(res)
@@ -50,5 +64,28 @@ export default {
 </script>
 
 <style scoped>
+.el-row {
+  margin-bottom: 20px;
+}
+.el-col {
+  border-radius: 4px;
+}
+.bg-purple-dark {
+  background: #99a9bf;
+}
+.bg-purple {
+  background: #d3dce6;
+}
+.bg-purple-light {
+  background: #e5e9f2;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.row-bg {
+  padding: 10px 0;
+  background-color: #f9fafc;
+}
 
 </style>
